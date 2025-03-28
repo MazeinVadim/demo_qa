@@ -1,7 +1,7 @@
 from pages.demoqa import DemoQa
 from pages.elements_page import ElementsPage
 
-'''
+
 def test_check_footer_text(browser):
     demo_qa_page = DemoQa(browser)
     demo_qa_page.visit()
@@ -21,7 +21,7 @@ def test_check_elements_page_text(browser):
     center_text_locator = '#app > div > div > div > div.col-12.mt-4.col-md-6'
     center_text = elements_page.get_text(center_text_locator)
     assert center_text == 'Please select an item from left to start practice.'
-'''
+
 def test_page_elements(browser):
     elements_page = ElementsPage(browser)
     elements_page.visit()
