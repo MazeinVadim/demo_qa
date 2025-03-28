@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from components.components import WebElement
 
 
 class BasePage:
@@ -18,4 +19,9 @@ class BasePage:
             return True
         else:
             return False
+
+    def get_text(self, locator):
+        element = WebElement(self.driver, locator)
+        return element.get_text()
+
 

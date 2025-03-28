@@ -20,3 +20,10 @@ class WebElement:
             return False
         return True
 
+    def get_text(self):
+        return str(self.find_element().text)
+
+
+
+
+
