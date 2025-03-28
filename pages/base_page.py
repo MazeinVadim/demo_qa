@@ -24,4 +24,16 @@ class BasePage:
         element = WebElement(self.driver, locator)
         return element.get_text()
 
+    def back(self):
+        self.driver.back()
+
+    def forward(self):
+        self.driver.forward()
+
+    def refresh(self):
+        self.driver.refresh()
+
+    def get_title(self):
+        return self.driver.title
+
 
