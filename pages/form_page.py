@@ -2,7 +2,7 @@ from components.components import WebElement
 from pages.base_page import BasePage
 
 
-class FromPage(BasePage):
+class FormPage(BasePage):
 
 
     def __init__(self, driver):
@@ -20,3 +20,9 @@ class FromPage(BasePage):
 
         self.hobbies = WebElement(driver, '#hobbies-checkbox-1')
         self.current_address = WebElement(driver, '#currentAddress')
+
+        self.state_dropdown = WebElement(driver, "#state")
+        self.city_dropdown = WebElement(driver, "#city")
+        self.form_element = WebElement(driver, "form")
+        self.select_state = WebElement(driver, "#state > div")
+        self.select_city = WebElement(driver, "#city > div")

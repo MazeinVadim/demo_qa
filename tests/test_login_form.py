@@ -1,9 +1,9 @@
 import time
-from pages.from_page import FromPage
+from pages.form_page import FormPage
 
 
 def test_login_form(browser):
-    form_page = FromPage(browser)
+    form_page = FormPage(browser)
 
     form_page.visit()
     assert not form_page.modal_dialog.exist()
@@ -21,3 +21,16 @@ def test_login_form(browser):
 
     assert form_page.modal_dialog.exist()
     form_page.btn_close_modal.click_force()
+
+def test_fill_state_and_city(browser):
+    form_page = FormPage(browser)
+
+    form_page.visit()
+
+    form_page.state_dropdown.click_force()
+    time.sleep(2)
+    form_page.select_state.click_force()
+    form_page.city_dropdown.click_force()
+    time.sleep(2)
+    form_page.select_city.click_force()
+
