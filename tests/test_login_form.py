@@ -1,5 +1,6 @@
 import time
 from pages.form_page import FormPage
+from selenium.webdriver.common.keys import Keys
 
 
 def test_login_form(browser):
@@ -34,3 +35,11 @@ def test_fill_state_and_city(browser):
     time.sleep(2)
     form_page.select_city.click_force()
 
+def test_state(browser):
+    form_page = FormPage(browser)
+    form_page.visit()
+    time.sleep(2)
+    form_page.state_dropdown.scroll_to_element()
+    form_page.state_dropdown.click()
+    form_page.btn_NCR.click()
+    time.sleep(2)

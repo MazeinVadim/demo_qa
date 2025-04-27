@@ -1,6 +1,7 @@
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import time
 
 
 class WebElement:
@@ -62,6 +63,9 @@ class WebElement:
             self.find_element()
         )
 
+    def check_css(self, style, value=''):
+        return self.find_element().value_of_css_property(style) == value
+
     def get_by_type(self):
         if self.locator_type == 'id':
             return By.ID
@@ -78,5 +82,21 @@ class WebElement:
         else:
             print('Locator type' + self.locator_type + 'not correct')
         return False
+
+    def safe_click(self, timeout=2):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                self.find_element().click()
+                return True
+            except StaleElementReferenceException:
+                time.sleep(0.1)
+            except Exception as e:
+                print(f"An error occurred during click: {e}")
+                return False
+        print("Timeout waiting for element to be clickable after stale element exception.")
+        return False
+
+
 
 

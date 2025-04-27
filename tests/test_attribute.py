@@ -1,5 +1,3 @@
-import time
-
 from pages.text_box import TextBox
 
 def test_placeholder(browser):
