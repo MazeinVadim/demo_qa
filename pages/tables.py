@@ -29,3 +29,10 @@ class Tables(BasePage):
         self.btn_next = WebElement(driver, '.pagination-bottom .-next button')
         self.btn_prev = WebElement(driver, '.pagination-bottom .-previous button')
         self.select_rows = WebElement(driver, 'select[aria-label="rows per page"]')
+
+        self.header_firstname = WebElement(driver, 'div.rt-th:nth-child(1)')
+        self.header_lastname = WebElement(driver, 'div.rt-th:nth-child(2)')
+        self.header_age = WebElement(driver, 'div.rt-th:nth-child(3)')
+        self.header_email = WebElement(driver, 'div.rt-th:nth-child(4)')
+        self.header_salary = WebElement(driver, 'div.rt-th:nth-child(5)')
+        self.header_department = WebElement(driver, 'div.rt-th:nth-child(6)')
