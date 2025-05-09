@@ -1,6 +1,7 @@
 from selenium.common import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 import time
 
 
@@ -96,6 +97,41 @@ class WebElement:
                 return False
         print("Timeout waiting for element to be clickable after stale element exception.")
         return False
+
+    def is_displayed(self, timeout=2):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                return self.find_element().is_displayed()
+            except (NoSuchElementException, StaleElementReferenceException):
+                time.sleep(0.1)
+            except Exception as e:
+                print(f"An error occurred while checking visibility: {e}")
+                return False
+        return False
+
+    # Проверяет, что элемент НЕ отображается или удален из DOM
+    def is_closed(self):
+        try:
+            return not self.find_element().is_displayed()
+        except NoSuchElementException:
+            return True
+
+    # Ищет текст в таблице построчно
+    def find_text_in_table(self, search_text):
+        rows = self.find_elements()
+        for row in rows:
+            if search_text in row.text:
+                return True
+        return False
+
+    # Проверяет, что элемент имеет атрибут disabled
+    def is_disabled(self):
+        return self.get_dom_attribute('disabled') is not None
+
+    def select_by_value(self, value):
+        select = Select(self.find_element())
+        select.select_by_value(value)
 
 
 
